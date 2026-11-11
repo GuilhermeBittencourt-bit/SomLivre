@@ -1,0 +1,7 @@
+/* Estilos globais – tema escuro (será completado na Etapa 4) */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #121212;
+  color: #ffffff;
+}
