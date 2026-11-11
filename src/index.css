@@ -1,7 +1,191 @@
-/* Estilos globais – tema escuro (será completado na Etapa 4) */
+/* Estilos globais – tema escuro estilo app de música */
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
   background: #121212;
   color: #ffffff;
+}
+
+button { font: inherit; cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: 0.4; }
+
+.logo { color: #1db954; font-size: 1.6rem; margin: 0 0 1rem; }
+
+/* ---------- Login e Cadastro ---------- */
+.tela-auth {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: linear-gradient(#1e1e1e, #000);
+}
+
+.cartao-auth {
+  width: 100%;
+  max-width: 380px;
+  background: #181818;
+  padding: 2rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cartao-auth h2 { margin: 0 0 1rem; }
+.cartao-auth label { margin-top: 0.8rem; font-size: 0.9rem; color: #b3b3b3; }
+
+.cartao-auth input {
+  margin-top: 0.3rem;
+  padding: 0.7rem;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #282828;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.cartao-auth input.campo-erro { border-color: #f15e6c; }
+
+.erro { color: #f15e6c; font-size: 0.85rem; margin: 0.3rem 0 0; }
+.dica { color: #888; font-size: 0.8rem; margin: 0.3rem 0 0; }
+
+.botao-principal {
+  margin-top: 1.5rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 999px;
+  background: #1db954;
+  color: #000;
+  font-weight: bold;
+}
+
+.troca-tela { text-align: center; color: #b3b3b3; margin-bottom: 0; }
+.link { background: none; border: none; color: #fff; text-decoration: underline; padding: 0; }
+
+/* ---------- Home ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+  padding-bottom: 90px; /* espaço para o player fixo */
+}
+
+.sidebar { background: #000; padding: 1.5rem 1rem; }
+.sidebar nav { display: flex; flex-direction: column; gap: 0.3rem; }
+
+.item-menu {
+  text-align: left;
+  background: none;
+  border: none;
+  color: #b3b3b3;
+  padding: 0.6rem;
+  border-radius: 6px;
+}
+.item-menu.ativo { color: #fff; background: #282828; }
+
+.conteudo { padding: 1.5rem; }
+
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+
+.botao-sair {
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 999px;
+  padding: 0.4rem 1.2rem;
+  font-weight: bold;
+}
+
+.campo-busca {
+  width: 100%;
+  max-width: 420px;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 999px;
+  background: #242424;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.sem-resultados { color: #b3b3b3; }
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #181818;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem;
+  color: #fff;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  transition: background 0.2s;
+}
+.card:hover { background: #282828; }
+
+.capa {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.card-titulo { font-size: 0.95rem; }
+.card-artista { display: block; color: #b3b3b3; font-size: 0.85rem; }
+
+/* ---------- Barra do player ---------- */
+.player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: #181818;
+  border-top: 1px solid #282828;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.player-info { display: flex; align-items: center; gap: 0.7rem; min-width: 0; }
+
+.capa-mini {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.player-controles { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+.botoes { display: flex; gap: 1rem; }
+.botoes button { background: none; border: none; color: #fff; font-size: 1.1rem; }
+.botoes .botao-play { background: #fff; color: #000; border-radius: 50%; width: 34px; height: 34px; }
+
+.progresso { display: flex; align-items: center; gap: 0.5rem; width: 100%; max-width: 500px; font-size: 0.75rem; color: #b3b3b3; }
+.barra { flex: 1; height: 4px; background: #4d4d4d; border-radius: 2px; }
+.barra-preenchida { width: 0%; height: 100%; background: #fff; border-radius: 2px; }
+
+/* ---------- Responsivo (RNF03): no celular a sidebar some ---------- */
+@media (max-width: 700px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .conteudo { padding: 1rem; }
+  .grade { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  .player { grid-template-columns: 1fr auto; }
+  .player-extra, .progresso { display: none; }
 }
