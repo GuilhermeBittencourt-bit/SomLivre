@@ -30,13 +30,6 @@ npm test           # roda os testes unitários
 npm run coverage   # roda os testes e mostra a cobertura
 ```
 
-## Tecnologias
-
-- React + Vite (JavaScript)
-- Vitest e @vitest/coverage-v8 (testes e cobertura)
-- localStorage (persistência, sem back-end)
-- CSS puro
-
 ## Estrutura
 
 ```
