@@ -21,7 +21,7 @@ function Login({ onEntrar, onIrParaCadastro }) {
   return (
     <div className="tela-auth">
       <form className="cartao-auth" onSubmit={handleSubmit} noValidate>
-        <h1 className="logo">♪ SomLivre</h1>
+        <h1 className="logo">SomLivre</h1>
         <h2>Entrar</h2>
 
         <label htmlFor="email">E-mail</label>

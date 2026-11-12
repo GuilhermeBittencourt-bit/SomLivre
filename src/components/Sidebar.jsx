@@ -3,11 +3,11 @@
 function Sidebar() {
   return (
     <aside className="sidebar">
-      <h1 className="logo">♪ SomLivre</h1>
+      <h1 className="logo">SomLivre</h1>
       <nav>
-        <button className="item-menu ativo">🏠 Início</button>
-        <button className="item-menu" disabled>🔍 Buscar</button>
-        <button className="item-menu" disabled title="Disponível na Aula 04">📚 Sua Biblioteca</button>
+        <button className="item-menu ativo">Início</button>
+        <button className="item-menu" disabled>Buscar</button>
+        <button className="item-menu" disabled title="Disponível na Aula 04">Sua Biblioteca</button>
       </nav>
     </aside>
   )

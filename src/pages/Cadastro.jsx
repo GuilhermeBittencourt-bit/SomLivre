@@ -33,7 +33,7 @@ function Cadastro({ onCadastrar, onIrParaLogin }) {
   return (
     <div className="tela-auth">
       <form className="cartao-auth" onSubmit={handleSubmit} noValidate>
-        <h1 className="logo">♪ SomLivre</h1>
+        <h1 className="logo">SomLivre</h1>
         <h2>Criar conta</h2>
 
         <label htmlFor="nome">Nome</label>
