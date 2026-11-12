@@ -49,3 +49,15 @@ export function emailJaCadastrado(email, usuarios) {
   const procurado = normalizarEmail(email)
   return (usuarios ?? []).some((u) => normalizarEmail(u.email) === procurado)
 }
+
+// Confirmação de senha: o usuário digita a senha duas vezes e elas precisam ser iguais.
+// Retorna { ok: true } ou { ok: false, erro: 'mensagem' }.
+export function confirmarSenha(senha, confirmacao) {
+  if (String(confirmacao ?? '') === '') {
+    return { ok: false, erro: 'Confirme a senha.' }
+  }
+  if (senha !== confirmacao) {
+    return { ok: false, erro: 'As senhas não conferem.' }
+  }
+  return { ok: true }
+}

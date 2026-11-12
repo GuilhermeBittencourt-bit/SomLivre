@@ -4,11 +4,11 @@ import { cadastrarUsuario } from '../logic/auth.js'
 import { lerUsuarios, salvarUsuarios } from '../data/storage.js'
 
 function Cadastro({ onCadastrar, onIrParaLogin }) {
-  const [dados, setDados] = useState({ nome: '', email: '', senha: '' })
+  const [dados, setDados] = useState({ nome: '', email: '', senha: '', confirmacao: '' })
   // erro = { campo: 'senha', mensagem: '...' } ou null
   const [erro, setErro] = useState(null)
 
-  // Atualiza só o campo que mudou (nome, email ou senha)
+  // Atualiza só o campo que mudou (nome, email, senha ou confirmacao)
   function alterar(evento) {
     setDados({ ...dados, [evento.target.name]: evento.target.value })
   }
@@ -52,6 +52,11 @@ function Cadastro({ onCadastrar, onIrParaLogin }) {
         {temErro('senha')
           ? <p className="erro">{erro.mensagem}</p>
           : <p className="dica">Mínimo 8 caracteres, com letras e números.</p>}
+
+        <label htmlFor="confirmacao">Confirmar senha</label>
+        <input id="confirmacao" name="confirmacao" type="password" value={dados.confirmacao} onChange={alterar}
+          className={temErro('confirmacao') ? 'campo-erro' : ''} />
+        {temErro('confirmacao') && <p className="erro">{erro.mensagem}</p>}
 
         <button type="submit" className="botao-principal">Cadastrar</button>
 

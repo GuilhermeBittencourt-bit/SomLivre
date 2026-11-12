@@ -1,7 +1,7 @@
 // Regras de cadastro e login (RF01, RF02).
 // Não acessam o DOM nem o localStorage: recebem a lista de usuários por parâmetro
 // e devolvem um objeto { ok, erro, campo, usuario }. Quem salva é a camada de dados.
-import { validarEmail, validarSenha, emailJaCadastrado, normalizarEmail } from './validacoes.js'
+import { validarEmail, validarSenha, confirmarSenha, emailJaCadastrado, normalizarEmail } from './validacoes.js'
 
 // RNF02 – Gera o hash SHA-256 da senha (nunca guardamos a senha "pura").
 // crypto.subtle existe nos navegadores modernos e no Node 20+ (usado pelo Vitest).
@@ -16,8 +16,8 @@ export async function gerarHash(texto) {
 }
 
 // RF01 – Cadastra um novo usuário.
-// dados = { nome, email, senha }, usuarios = lista atual de usuários.
-// O campo "campo" diz qual input da tela está errado (nome, email ou senha).
+// dados = { nome, email, senha, confirmacao }, usuarios = lista atual de usuários.
+// O campo "campo" diz qual input da tela está errado (nome, email, senha ou confirmacao).
 export async function cadastrarUsuario(dados, usuarios) {
   const nome = String(dados?.nome ?? '').trim()
   const email = normalizarEmail(dados?.email)
@@ -41,6 +41,12 @@ export async function cadastrarUsuario(dados, usuarios) {
   const resultadoSenha = validarSenha(senha)
   if (!resultadoSenha.ok) {
     return { ok: false, campo: 'senha', erro: resultadoSenha.erro }
+  }
+
+  // As duas senhas digitadas precisam ser iguais
+  const resultadoConfirmacao = confirmarSenha(senha, dados?.confirmacao ?? '')
+  if (!resultadoConfirmacao.ok) {
+    return { ok: false, campo: 'confirmacao', erro: resultadoConfirmacao.erro }
   }
 
   const usuario = {

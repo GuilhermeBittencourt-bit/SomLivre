@@ -1,7 +1,7 @@
 // Testes unitários das regras de validação (RN01 e RN02).
 // Cada "it" é um caso de teste. "expect" compara o resultado obtido com o esperado.
 import { describe, it, expect } from 'vitest'
-import { validarSenha, validarEmail, emailJaCadastrado } from '../../src/logic/validacoes.js'
+import { validarSenha, validarEmail, emailJaCadastrado, confirmarSenha } from '../../src/logic/validacoes.js'
 
 describe('RN02 – validarSenha', () => {
   // CT-001
@@ -64,5 +64,19 @@ describe('RN01 – emailJaCadastrado', () => {
   // CT-010
   it('permite e-mail que ainda não foi cadastrado', () => {
     expect(emailJaCadastrado('bruno@exemplo.com', usuarios)).toBe(false)
+  })
+})
+
+describe('Confirmação de senha – confirmarSenha', () => {
+  // CT-017
+  it('aceita quando as duas senhas são iguais', () => {
+    expect(confirmarSenha('musica123', 'musica123')).toEqual({ ok: true })
+  })
+
+  // CT-018
+  it('recusa quando as senhas são diferentes', () => {
+    const resultado = confirmarSenha('musica123', 'musica124')
+    expect(resultado.ok).toBe(false)
+    expect(resultado.erro).toBe('As senhas não conferem.')
   })
 })
